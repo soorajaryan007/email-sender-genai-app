@@ -1,0 +1,56 @@
+# =========================
+# Node / Electron
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Electron build outputs
+dist-electron/
+release/
+out/
+
+# =========================
+# Vue / Vite
+# =========================
+email-ui/node_modules/
+email-ui/dist/
+.vite/
+
+# =========================
+# Python / FastAPI
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.env
+.env.*
+venv/
+.venv/
+env/
+ENV/
+
+# =========================
+# OS / Editor junk
+# =========================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# Secrets
+# =========================
+*.pem
+*.key

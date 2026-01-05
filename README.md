@@ -1,361 +1,211 @@
-## 📨 AI Email Sender
+Here’s a clean, professional **README.md** you can drop straight into your repository. It explains the project end-to-end without overengineering, and it reads well for recruiters, reviewers, and future-you 🧭
 
-**(Vue + FastAPI + Electron + Docker)**
+---
 
-A professional **AI-powered email generator and sender** that helps create and send cold emails effortlessly.
+# 📨 AI Cold Email Generator & Sender
 
-The project supports **two ways to run**:
+A full-stack application that **generates personalized cold emails using AI** and sends them via SMTP.
+Built with **FastAPI** on the backend and **pure HTML, CSS, and JavaScript** on the frontend.
 
-* 🖥️ **Desktop App** using **Electron**
-* 🐳 **One-command Browser App** using **Docker** (recommended for easy sharing)
-
-Built with **Vue 3** for UI, **FastAPI** for backend, and **Groq LLM** for AI email generation.
+This project demonstrates **API design, AI integration, email automation, and clean separation of concerns**.
 
 ---
 
 ## ✨ Features
 
 * 🧠 AI-generated professional cold emails (Groq LLM)
-* 📧 Send emails via SMTP (Gmail, Outlook, custom domains)
-* 🎨 Modern Vue 3 UI
-* ⚙️ FastAPI backend with validation
-* 🖥️ Native desktop app (Electron)
-* 🌐 Browser-based app (Docker)
-* 🐳 One-command startup with Docker
-* 🔒 Secure handling of API keys & credentials
-* 💻 Cross-platform (Windows, Linux, macOS)
+* ✍️ Resume-based personalization
+* 📧 SMTP email sending
+* 🔐 Environment-based configuration
+* 🌐 CORS-enabled backend for frontend integration
+* 🧩 Simple, clean UI with preview before sending
+* 🧠 Temporary in-memory storage for generated emails
 
 ---
 
-## 🧱 Tech Stack
+## 🏗️ Architecture Overview
 
-### Frontend
+```
+Frontend (HTML + CSS + JS)
+        |
+        |  HTTP (JSON)
+        v
+FastAPI Backend
+   ├── Email Generation (Groq LLM)
+   ├── Temporary Email Store (In-Memory)
+   └── SMTP Email Sender
+```
 
-* Vue 3
-* Vite
-* Axios
-* NGINX (Docker production serving)
+---
+
+## 🛠️ Tech Stack
 
 ### Backend
 
+* Python
 * FastAPI
 * Pydantic
 * Groq LLM API
-* SMTP (email sending)
+* SMTP (Gmail / custom provider)
+* python-dotenv
 
-### Desktop
+### Frontend
 
-* Electron
-
-### Infrastructure
-
-* Docker
-* Docker Compose
-
----
-
-## 🧠 Architecture Overview
-
-### Docker / Browser Mode
-
-```
-Browser
- └── http://localhost:8080
-       └── Vue UI (NGINX, Docker)
-             └── FastAPI Backend (Docker)
-                   └── Groq LLM + SMTP
-```
-
-### Electron / Desktop Mode
-
-```
-Electron App
- └── Vue (Vite build)
-       └── FastAPI (localhost:8000)
-             └── Groq LLM + SMTP
-```
+* HTML5
+* CSS3
+* Vanilla JavaScript (Fetch API)
 
 ---
 
 ## 📂 Project Structure
 
 ```
-project/
+project-root/
 │
-├── backend/
-│   ├── app/
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   └── .env                # NOT committed
+├── app/
+│   ├── main.py           # FastAPI app & routes
+│   ├── schemas.py        # Request validation models
+│   ├── llm.py            # Groq LLM integration
+│   ├── email_service.py  # SMTP email sender
+│   ├── store.py          # In-memory email store
+│   └── config.py         # Environment-based settings
 │
 ├── frontend/
-│   ├── src/
-│   ├── dist/               # Vue production build
-│   ├── Dockerfile
-│   └── vite.config.js
+│   ├── index.html        # UI
+│   ├── style.css         # Styling
+│   └── script.js         # API integration logic
 │
-├── desktop/                # Electron app
-│   ├── main.js
-│   └── preload.js
-│
-├── docker-compose.yml
-├── start.sh                # Linux / macOS
-├── start.bat               # Windows
-├── .gitignore
+├── .env                  # Environment variables
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-# 🐳 RUN USING DOCKER (RECOMMENDED)
+## ⚙️ Environment Variables
 
-This is the **easiest way**, especially for **non-technical users**.
-
----
-
-## 🛠️ Prerequisites (One-Time)
-
-* **Docker Desktop**
-
-Download:
-👉 [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
-
-Supported OS:
-
-* Windows 10 / 11 (64-bit)
-* Linux
-* macOS
-
-> ❗ No Python, Node.js, or npm required when using Docker.
-
----
-
-## 🔐 Environment Variables Setup
-
-Create this file:
-
-```
-backend/.env
-```
-
-Add:
+Create a `.env` file in the project root:
 
 ```env
-GROQ_API_KEY=
-SMTP_HOST=
-SMTP_PORT=
-SMTP_EMAIL=
-SMTP_PASSWORD=
-```
+# Groq LLM
+GROQ_API_KEY=your_groq_api_key
 
----
-
-### 🔑 How to get values
-
-#### Groq API Key
-
-👉 [https://console.groq.com/keys](https://console.groq.com/keys)
-(Create an account → Create API Key)
-
-Example:
-
-```env
-GROQ_API_KEY=gsk_xxxxxxxxxxxxx
-```
-
----
-
-#### Gmail SMTP (Recommended)
-
-1. Enable 2-Step Verification
-   👉 [https://myaccount.google.com/security](https://myaccount.google.com/security)
-
-2. Create App Password
-   👉 [https://myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
-
-   * App: Mail
-   * Device: Other
-
-```env
+# SMTP Configuration
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=465
-SMTP_EMAIL=yourgmail@gmail.com
+SMTP_EMAIL=your_email@gmail.com
 SMTP_PASSWORD=your_app_password
 ```
 
+> ⚠️ Use **Gmail App Passwords**, not your main Gmail password.
+
 ---
 
-## 🚀 Start the App (One Command)
+## 🚀 Getting Started
 
-### Option 1️⃣: Docker Compose
+### 1️⃣ Install dependencies
 
 ```bash
-docker compose up
-```
-
-Open browser:
-
-```
-http://localhost:8080
-```
-
----
-
-### Option 2️⃣: One-Click Script (Recommended)
-
-#### 🐧 Linux / macOS
-
-```bash
-chmod +x start.sh
-./start.sh
-```
-
-#### 🪟 Windows
-
-Double-click:
-
-```
-start.bat
-```
-
-Then open:
-
-```
-http://localhost:8080
-```
-
----
-
-## 🧑‍🤝‍🧑 For Non-Technical Users (Docker Mode)
-
-```
-1. Install Docker Desktop
-2. Open project folder
-3. Double-click start.sh (Linux/macOS) or start.bat (Windows)
-4. Open browser → http://localhost:8080
-```
-
-That’s it.
-
----
-
-# 🖥️ RUN AS DESKTOP APP (ELECTRON)
-
-Use this if you want a **native desktop application**.
-
----
-
-## 🛠️ Prerequisites (Electron Mode)
-
-* Node.js ≥ 18
-* npm ≥ 9
-* Python ≥ 3.10
-
----
-
-## 🚀 Electron Setup
-
-### 1️⃣ Clone the repository
-
-```bash
-git clone https://github.com/your-username/<repo-name>.git
-cd <repo-name>
-```
-
----
-
-### 2️⃣ Backend setup
-
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
+```
+
+### 2️⃣ Run the backend
+
+```bash
 uvicorn app.main:app --reload
 ```
 
-Backend runs at:
+Backend will be available at:
 
 ```
 http://localhost:8000
 ```
 
+### 3️⃣ Open the frontend
+
+Simply open `index.html` in your browser
+(or serve it using a local server if preferred).
+
 ---
 
-### 3️⃣ Frontend build
+## 🔌 API Endpoints
 
-```bash
-cd ../frontend
-npm install
-npm run build
+### ➤ Generate Email
+
+**POST** `/generate-email`
+
+```json
+{
+  "recipient_email": "manager@company.com",
+  "recipient_name": "Jane Smith",
+  "recipient_position": "Hiring Manager",
+  "company_name": "Tech Corp",
+  "company_location": "Bengaluru",
+  "resume_text": "Your resume text here",
+  "candidate_name": "Sooraj Aryan"
+}
+```
+
+**Response**
+
+```json
+{
+  "email_id": "uuid",
+  "recipient_email": "manager@company.com",
+  "email_body": "Generated email text"
+}
 ```
 
 ---
 
-### 4️⃣ Run Electron
+### ➤ Send Email
 
-```bash
-cd ../desktop
-npm install
-npm run electron
+**POST** `/send-email`
+
+Query parameters:
+
+```
+email_id=<uuid>
+to_email=<recipient email>
+subject=<email subject>
 ```
 
-🎉 Desktop app launches.
+**Response**
+
+```json
+{
+  "status": "Email sent successfully",
+  "email_id": "uuid"
+}
+```
 
 ---
 
-## ⚠️ Important Notes
+## 🧠 Design Decisions
 
-* ❌ Never commit `.env`
-* ❌ Never share API keys
-* ✅ Each user should use their own email credentials
-* Docker mode is easiest for sharing
-* Electron mode is best for desktop distribution
-
----
-
-## 🔄 Electron vs Docker
-
-| Use Case            | Best Option |
-| ------------------- | ----------- |
-| Non-technical users | Docker      |
-| One-click startup   | Docker      |
-| Desktop app feel    | Electron    |
-| Portfolio demo      | Either      |
-| SaaS / Cloud future | Docker      |
+* **In-memory store** keeps generated emails short-lived to save memory
+* **Separation of generation and sending** improves clarity and extensibility
+* **No subject generated by AI** gives full control to the user
+* **Pure frontend stack** avoids framework lock-in
 
 ---
 
-## 🚀 Future Improvements
+## 🔮 Future Improvements
 
-* Single-port setup (remove CORS completely)
-* Docker Hub image (no local build)
-* Save email history
-* User authentication
-* Auto-start backend in Electron
-* One-click installer (`.exe`, `.AppImage`)
-* Cloud deployment
-
----
-
-## 🏆 Why this project matters
-
-This project demonstrates:
-
-* Full-stack engineering
-* Dockerized production architecture
-* Desktop + browser delivery
-* Secure secret handling
-* Real-world API design
-
-Perfect for **portfolio**, **interviews**, and **internal tools**.
+* Persistent database (PostgreSQL / Redis)
+* Authentication & rate limiting
+* Email history dashboard
+* Multiple email templates
+* Desktop version using Electron
+* Agentic automation (auto follow-ups)
 
 ---
 
-## 📜 License
+## 👤 Author
 
-MIT License
+**Sooraj Aryan**
+Backend & AI Engineer
+📍 India
 
 ---
 
-# email-sender-genai-app

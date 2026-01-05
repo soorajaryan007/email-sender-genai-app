@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Cold Email Sender</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📨 AI Cold Email Generator</h1>
+      <p>Create personalized cold emails powered by AI</p>
+    </div>
+
+    <div class="content">
+      <form id="emailForm">
+        <div class="form-section">
+          <div class="section-title">👤 Your Information</div>
+          <div class="input-group">
+            <label for="candidate_name">Your Name</label>
+            <input id="candidate_name" type="text" placeholder="John Doe" required />
+          </div>
+          <div class="input-group">
+            <label for="resume_text">Your Resume</label>
+            <textarea
+              id="resume_text"
+              placeholder="Paste your resume or key qualifications here..."
+              rows="6"
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="section-title">🎯 Recipient Details</div>
+          <div class="grid">
+            <div class="input-group">
+              <label for="recipient_name">Recipient Name</label>
+              <input id="recipient_name" type="text" placeholder="Jane Smith" required />
+            </div>
+            <div class="input-group">
+              <label for="recipient_email">Recipient Email</label>
+              <input id="recipient_email" type="email" placeholder="jane@company.com" required />
+            </div>
+          </div>
+          <div class="grid">
+            <div class="input-group">
+              <label for="recipient_position">Position</label>
+              <input id="recipient_position" type="text" placeholder="Hiring Manager" required />
+            </div>
+            <div class="input-group">
+              <label for="company_name">Company Name</label>
+              <input id="company_name" type="text" placeholder="Tech Corp" required />
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="company_location">Company Location</label>
+            <input id="company_location" type="text" placeholder="San Francisco, CA" required />
+          </div>
+        </div>
+
+        <button type="submit">✨ Generate Email</button>
+      </form>
+
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Generating your personalized email...</p>
+      </div>
+
+      <div id="preview" class="preview">
+        <h2>✉️ Your Generated Email</h2>
+        
+        <div class="input-group">
+          <label for="subject">Email Subject</label>
+          <input id="subject" type="text" placeholder="Email Subject" value="Application for Software Engineer" />
+        </div>
+
+        <div class="input-group">
+          <label>Email Body</label>
+          <div id="emailBody" class="email-preview"></div>
+        </div>
+
+        <button id="sendBtn">🚀 Send Email</button>
+      </div>
+    </div>
+  </div>
+<script src = "script.js"></script>
+</body>
+</html>
