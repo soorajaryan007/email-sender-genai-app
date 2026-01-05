@@ -1,8 +1,4 @@
-Here’s a clean, professional **README.md** you can drop straight into your repository. It explains the project end-to-end without overengineering, and it reads well for recruiters, reviewers, and future-you 🧭
-
----
-
-# 📨 AI Cold Email Generator & Sender
+## 📨 AI Cold Email Generator & Sender
 
 A full-stack application that **generates personalized cold emails using AI** and sends them via SMTP.
 Built with **FastAPI** on the backend and **pure HTML, CSS, and JavaScript** on the frontend.
