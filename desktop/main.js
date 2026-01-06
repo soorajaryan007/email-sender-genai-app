@@ -1,21 +1,23 @@
-const { app, BrowserWindow } = require("electron");
-const path = require("path");
+const { app, BrowserWindow } = require("electron")
+const { spawn } = require("child_process")
+const path = require("path")
+
+let backendProcess
 
 function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
-    webPreferences: {
-      contextIsolation: true
-    }
-  });
+  })
 
-  // Load Vue build
-  win.loadFile(path.join(__dirname, "../frontend/dist/index.html"));
+  win.loadFile(path.join(__dirname, "../frontend/index.html"))
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  backendProcess = spawn("python", ["../backend/main.py"])
+  createWindow()
+})
 
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") app.quit();
-});
+app.on("will-quit", () => {
+  backendProcess.kill()
+})
