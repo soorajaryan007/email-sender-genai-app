@@ -35,7 +35,8 @@
 
         const data = await response.json();
         
-        emailBodyField.textContent = data.email_body;
+        emailBodyField.value = data.email_body;
+
         emailId = data.email_id;
         
         loading.classList.remove('active');
@@ -55,9 +56,21 @@
       sendBtn.textContent = 'Sending...';
 
       try {
-        await fetch(`${API}/send-email?email_id=${emailId}&to_email=${encodeURIComponent(recipientEmail)}&subject=${encodeURIComponent(subject)}`, {
-          method: 'POST'
-        });
+        const editedBody = emailBodyField.value;
+
+await fetch(`${API}/send-email`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    email_id: emailId,
+    to_email: recipientEmail,
+    subject: subject,
+    edited_body: editedBody
+  })
+});
+
 
         alert('✅ Email sent successfully!');
         sendBtn.textContent = '✓ Sent';

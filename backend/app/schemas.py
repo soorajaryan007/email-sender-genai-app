@@ -9,3 +9,10 @@ class EmailRequest(BaseModel):
     company_location: str
     resume_text: str
     candidate_name: str
+
+
+class SendEmailRequest(BaseModel):
+    email_id: str
+    to_email: str
+    subject: str
+    edited_body: str

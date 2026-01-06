@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from dotenv import load_dotenv
 
-from app.schemas import EmailRequest
+from app.schemas import EmailRequest , SendEmailRequest
 from app.llm import generate_cold_email
 from app.store import save_email,get_email_body
 from app.email_service import send_email
@@ -51,23 +51,14 @@ Location: {data.company_location}
 
 
 @app.post("/send-email")
-def send_generated_email(
-    email_id: str,
-    to_email: str,
-    subject: str
-):
-    email_body = get_email_body(email_id)
-
-    if not email_body:
-        raise HTTPException(status_code=404, detail="Generated email not found")
-
+def send_generated_email(payload: SendEmailRequest):
     send_email(
-        to_email=to_email,
-        subject=subject,
-        body=email_body  # ✅ GENERATED EMAIL BODY USED HERE
+        to_email=payload.to_email,
+        subject=payload.subject,
+        body=payload.edited_body  # 👈 edited content
     )
 
     return {
         "status": "Email sent successfully",
-        "email_id": email_id
+        "email_id": payload.email_id
     }
