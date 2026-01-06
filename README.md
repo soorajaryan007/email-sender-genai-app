@@ -146,16 +146,6 @@ This project intentionally emphasizes:
 
 Even though the app is small, the architecture scales mentally to much larger systems.
 
----
-
-## What this project is NOT
-
-* Not a monolithic script
-* Not a frontend-only AI demo
-* Not tightly coupled to one LLM or one email provider
-* Not built for shortcuts
-
-It is designed as a **foundation**, not a toy.
 
 ---
 
@@ -193,19 +183,6 @@ Planned directions:
 
 ---
 
-## Who is this repo for?
-
-* Backend engineers learning AI integration
-* Developers preparing for system design interviews
-* Anyone building real GenAI-powered products
-* Engineers who want **clarity over magic**
-
----
-
-## Final note
-
-This repository is less about sending emails
-and more about **how to think when building AI systems that survive real-world use**.
 
 ## 📦 How to Install
 
