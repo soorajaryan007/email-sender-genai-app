@@ -55,6 +55,7 @@ cd ai-cold-email-generator
 ### 2️⃣ Create Virtual Environment
 
 ```powershell
+cd backend
 python -m venv venv
 venv\Scripts\activate
 ```
