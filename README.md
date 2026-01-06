@@ -207,3 +207,7 @@ Planned directions:
 This repository is less about sending emails
 and more about **how to think when building AI systems that survive real-world use**.
 
+## 📦 How to Install
+
+- [Ubuntu Documentation](README-UBUNTU.md)
+- [Window Documentation](README-WINDOW.md)
