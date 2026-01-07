@@ -70,6 +70,7 @@ cd ai-cold-email-generator
 ### 2️⃣ Create Virtual Environment
 
 ```bash
+cd backend
 python3 -m venv venv
 source venv/bin/activate
 ```

@@ -7,6 +7,10 @@ from app.store import save_email,get_email_body
 from app.email_service import send_email
 from fastapi.middleware.cors import CORSMiddleware
 
+from fastapi.concurrency import run_in_threadpool
+import asyncio
+
+
 load_dotenv()
 app = FastAPI()
 app.add_middleware(
@@ -25,7 +29,7 @@ app.add_middleware(
 
 
 @app.post("/generate-email")
-def generate_email(data: EmailRequest):
+async def generate_email(data: EmailRequest):
     prompt = f"""
 Candidate Resume:{data.resume_text}
 Candidate Name:{data.candidate_name}
@@ -37,9 +41,20 @@ Company: {data.company_name}
 Location: {data.company_location}
 """
 
-    email_body = generate_cold_email(prompt)
+    try:
+        # ⏱️ offload blocking LLM call
+        email_body = await asyncio.wait_for(
+            run_in_threadpool(generate_cold_email, prompt),
+            timeout=8  # seconds
+        )
 
-    # ✅ STORE GENERATED EMAIL,Emailaddress,
+    except asyncio.TimeoutError:
+        raise HTTPException(
+            status_code=504,
+            detail="Email generation timed out"
+        )
+
+    # ⚠️ save_email is fast; OK to keep sync
     email_id = save_email(email_body)
 
     return {
