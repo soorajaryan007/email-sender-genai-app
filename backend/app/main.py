@@ -70,7 +70,9 @@ def send_generated_email(payload: SendEmailRequest):
     send_email(
         to_email=payload.to_email,
         subject=payload.subject,
-        body=payload.edited_body  # 👈 edited content
+        body=payload.edited_body,  # 👈 edited content
+        attachment_filename=payload.attachment_filename,
+        attachment_content=payload.attachment_content
     )
 
     return {

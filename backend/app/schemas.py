@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr, field_validator
+from typing import Optional
 
 
 class EmailRequest(BaseModel):
@@ -16,3 +17,5 @@ class SendEmailRequest(BaseModel):
     to_email: str
     subject: str
     edited_body: str
+    attachment_filename: Optional[str] = None
+    attachment_content: Optional[str] = None  # base64 encoded PDF

@@ -1,10 +1,17 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Cold Email Sender</title>
-  <link rel="stylesheet" href="style.css">
+
+      <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
   <div class="container">
@@ -78,18 +85,26 @@
 
         <div class="input-group">
           <label>Email Body</label>
-          <textarea
-  id="emailBody"
-  class="email-preview"
-  rows="10"
->          </textarea>
+          <textarea id="emailBody" class="email-preview" rows="10"></textarea>
+        </div>
 
+        <div class="input-group">
+          <label for="pdfAttachment">📎 Attach PDF Resume (Optional)</label>
+          <div class="file-input-wrapper">
+            <input type="file" id="pdfAttachment" accept=".pdf" />
+            <label for="pdfAttachment" class="file-input-label">
+              <span>📄</span>
+              <span>Choose PDF File</span>
+            </label>
+          </div>
+          <div id="fileName" style="display: none;"></div>
         </div>
 
         <button id="sendBtn">🚀 Send Email</button>
       </div>
     </div>
   </div>
+
 <script src = "script.js"></script>
 </body>
 </html>
