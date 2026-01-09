@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "name": "app",
+  "version": "1.0.0",
+  "main": "config.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "groq-sdk": "^0.37.0",
+    "zod": "^4.3.5",
+    "nodemailer": "^6.9.9",
+    "dotenv": "^16.4.5"
+  }
+}
