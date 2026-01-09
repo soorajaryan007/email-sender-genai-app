@@ -1,4 +1,4 @@
-## 📨 AI Cold Email Generator & Sender
+## 📨 AI Cold Email Generator & Sender.
 
 ## What is this repository for?
 
