@@ -19,24 +19,27 @@
 ## 📁 Project Structure
 
 ```
-project-root/
+email-sender-genai-app/
 │
+│── backend
+│   ├── venv
+|   ├──app/
+│   │  ├── main.py
+│   │  ├── llm.py
+│   │  ├── email_service.py
+│   │  ├── store.py
+│   │  ├── schemas.py
+│   │  └── config.py
+│   │
+|   ├── gui_app.py
+|   ├── .env
+|   ├── requirements.txt
+|
+|
 ├── frontend/
 │   ├── index.html
 │   ├── style.css
 │   └── script.js
-│
-├── app/
-│   ├── main.py
-│   ├── llm.py
-│   ├── email_service.py
-│   ├── store.py
-│   ├── schemas.py
-│   └── config.py
-│
-├── .env
-├── requirements.txt
-└── README-UBUNTU.md
 ```
 
 ---
