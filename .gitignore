@@ -3,6 +3,7 @@ test/
 # Node / Electron
 # =========================
 backend/app/node_modules/
+frontend-react/node_modules/
 node_modules/
 npm-debug.log*
 yarn-debug.log*
